@@ -1,0 +1,40 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>victoriaf.jpg</file>
+        <file>arbitro2.png</file>
+        <file>victorian1.jpg</file>
+        <file>podio.jpg</file>
+        <file>logo.png</file>
+        <file>login_bn.png</file>
+        <file>alberto.png</file>
+        <file>titulomenu.png</file>
+        <file>titulo.png</file>
+        <file>integral.png</file>
+        <file>restri3.png</file>
+        <file>restri2.png</file>
+        <file>restri.png</file>
+        <file>restri4.png</file>
+        <file>refb1.png</file>
+        <file>Canoncito.png</file>
+        <file>fondo3.jpg</file>
+        <file>ball-pit.jpg</file>
+        <file>ladrillo.jpg</file>
+        <file>botonJugar.jpg</file>
+        <file>Menu.jpg</file>
+        <file>Iniciosesion.jpg</file>
+        <file>Bibliografía.png</file>
+        <file>lupa.png</file>
+        <file>salir_3.png</file>
+        <file>instrucciones.png</file>
+        <file>instrucciones2.png</file>
+        <file>Salir20.png</file>
+        <file>Titulo2.png</file>
+        <file>colorworld.png</file>
+        <file>instrucciones3.png</file>
+        <file>pizarron.jpg</file>
+        <file>fondo4.jpg</file>
+        <file>../../../Documents/Universidad/Informatica 2/ProyectoFinalInfoII/Canon.png</file>
+        <file>Desierto.jpg</file>
+        <file>playa.jpg</file>
+    </qresource>
+</RCC>

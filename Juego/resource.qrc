@@ -1,0 +1,35 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>Desierto.jpg</file>
+        <file>fondo3.jpg</file>
+        <file>fondo4.jpg</file>
+        <file>Iniciosesion.jpg</file>
+        <file>ladrillo.jpg</file>
+        <file>Menu.jpg</file>
+        <file>pizarron.jpg</file>
+        <file>instrucciones.png</file>
+        <file>instrucciones2.png</file>
+        <file>instrucciones3.png</file>
+        <file>playa.jpg</file>
+        <file>SALIR2.jpg</file>
+        <file>victoriaf.jpg</file>
+        <file>victorian.jpg</file>
+        <file>victorian1.jpg</file>
+        <file>alberto.png</file>
+        <file>arbitro2.png</file>
+        <file>Canoncito.png</file>
+        <file>champions.png</file>
+        <file>colorworld.png</file>
+        <file>integral.png</file>
+        <file>login_bn.png</file>
+        <file>logo.png</file>
+        <file>lupa.png</file>
+        <file>Madera.png</file>
+        <file>salir_3.png</file>
+        <file>Salir20.png</file>
+        <file>Titulo2.png</file>
+        <file>winner.png</file>
+        <file>ball-pit.jpg</file>
+        <file>podio.jpg</file>
+    </qresource>
+</RCC>
