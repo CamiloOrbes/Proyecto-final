@@ -30,6 +30,7 @@
 #include "bolas.h"
 #include "bolasgraf.h"
 #include "numjugs.h"
+#include "obsmovil.h"
 
 using namespace std;
 
@@ -50,6 +51,7 @@ private slots:
 	void on_actionReiniciar_triggered();
     void on_actionGuardar_Partida();
     void on_actionCargar_Partida();
+    void rotar();
 protected:
     void mousePressEvent(QMouseEvent * ev);
 
@@ -69,13 +71,14 @@ private:
     QList <Obstaculo*> obs;//lista con objetos de la clase bloques para mostrarlos en escena
     QList <BolasGraf*> bars;   //lista con objetos de la clase cuerpograf con los cuerpos para mostrarlos.
     QList<QGraphicsItem*> flag;
-    QTimer *timer;              //timer para los intervalos de tiempo entre cada frame
+    QTimer *timer, *timer1;              //timer para los intervalos de tiempo entre cada frame
     Menu *menuP;
     int usuario; //se crea para saber si el usuario es juan o alberto
     float ratio = 0;
 	int nivel = 0;
 	int vidas=3;
     Canon *canon;
+    ObsMovil *obsmov;
     int colorset=1;
 	bool perdio = false;
 	int tiros;

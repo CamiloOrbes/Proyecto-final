@@ -36,17 +36,3 @@ public:
 };
 
 #endif // BOLAS_H
-
-class Movimiento
-{
-private:
-    float up; //movimiento hacia arriba
-    float down;//movimiento hacia abajo
-    float aceleracion;
-public:
-    float get_up();//Recibe el valor up generado por la interaccion con el arduino
-    float get_down();//Recibe el valor down generado por la interaccion con el arduino
-    float aceleracion();//Recibe la aceleracion generada por el acelerometro
-
-
-}

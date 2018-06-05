@@ -14,7 +14,8 @@
    <string>Dialog</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-image: url(:/images/Iniciosesion.jpg)</string>
+   <string notr="true">background-image: url(:/images/Menu.jpg)
+rgb(0, 0, 255)</string>
   </property>
   <widget class="QLineEdit" name="lineEdit">
    <property name="geometry">

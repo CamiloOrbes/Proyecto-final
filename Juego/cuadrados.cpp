@@ -57,6 +57,11 @@ int Cuadrados::get_y()
     return y;
 }
 
+int Cuadrados::get_color()
+{
+    return color;
+}
+
 void Cuadrados::cambio_color(int _color)
 {
     color=_color;

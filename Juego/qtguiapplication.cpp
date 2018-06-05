@@ -31,6 +31,10 @@ QtGuiApplication::QtGuiApplication(QWidget *parent): QMainWindow(parent)
     timer->setInterval(500);                //Intervalo de actualizacion..
     connect(timer, SIGNAL(timeout()), this, SLOT(actualizar()));
 
+    timer1= new QTimer(this);
+    timer1->setInterval(500);
+    connect(timer1,SIGNAL(timeout()),this, SLOT(rotar()));
+
     Menu menuP;
     menuP.setModal(true);
     menuP.exec();
@@ -75,36 +79,40 @@ void QtGuiApplication::bordercollision(BolasGraf *cf)//son los choques con los b
                 flag = scene->items();
 
                 if (b->get_velY()>0 && (b->get_posX()>=Cuadros[i]->get_x() && b->get_posX()<= Cuadros[i]->get_x()+Cuadros[i]->get_tam())){
-                    b->set_vel(b->get_velX(),
-                                    -1*b->get_velY(),b->get_posX(),b->get_posY());
-                    Cuadros[i]->cambio_color(colorset);
+
+                    b->set_vel(b->get_velX(),-1*b->get_velY(),b->get_posX(),b->get_posY());
+                    //Cuadros[i]->cambio_color(colorset);
                     //score->increase();
                 }
                 else if (b->get_velY()<0 && (b->get_posX()>=Cuadros[i]->get_x() && b->get_posX()<= Cuadros[i]->get_x()+Cuadros[i]->get_tam())){
-                    b->set_vel(b->get_velX(),
-                                    -1*b->get_velY(),b->get_posX(),b->get_posY());
-                    Cuadros[i]->cambio_color(colorset);
+
+                    b->set_vel(b->get_velX(),-1*b->get_velY(),b->get_posX(),b->get_posY());
+                    //Cuadros[i]->cambio_color(colorset);
                     //score->increase();
                 }
                 else if (b->get_velX()>0){
-                b->set_vel(-1*b->get_velX(),
-                                b->get_velY(),b->get_posX(),b->get_posY());
-                Cuadros[i]->cambio_color(colorset);
-                //    score->increase();
+
+                    b->set_vel(-1*b->get_velX(),b->get_velY(),b->get_posX(),b->get_posY());
+                    //Cuadros[i]->cambio_color(colorset);
+                    //    score->increase();
                 }
                 else if (b->get_velX()<0){
-                b->set_vel(-1*b->get_velX(),
-                                b->get_velY(),b->get_posX(),b->get_posY());
-                Cuadros[i]->cambio_color(colorset);
-                //    score->increase();
+
+                    b->set_vel(-1*b->get_velX(),b->get_velY(),b->get_posX(),b->get_posY());
+                    //Cuadros[i]->cambio_color(colorset);
+                    //    score->increase();
                 }
 
 
                 //b->set_vel(-1 * b->get_e()*b->get_velX(), b->get_velY(), b->get_posX(), b->get_posY());//se asigna una nueva velocidad a cuerpograf
 
-                //scene->removeItem(Cuadros[i]);//se borra de la escena
-                //Cuadros.removeAt(i);//se borra de la lista
-                enemigos--;//el entero de enemigos disminuye
+                if (colorset==Cuadros[i]->get_color()){
+                    scene->removeItem(Cuadros[i]);//se borra de la escena
+                    Cuadros.removeAt(i);//se borra de la lista
+                    enemigos--;//el entero de enemigos disminuye
+
+                }
+
                 if (enemigos <= 0) {//cuando llegue a 0 gana un nivel
                     QImage image(":/images/victorian1.jpg");
                     item = new QGraphicsPixmapItem(QPixmap::fromImage(image));//fromImage-> static member function, recibe Qimage
@@ -223,6 +231,11 @@ void QtGuiApplication::on_actionCargar_Partida()
       cargarNivel();
 }
 
+void QtGuiApplication::rotar()
+{
+    obsmov->rotar(1);
+}
+
 void QtGuiApplication::cargarNivel()
 {
     Cuadros.clear();
@@ -249,15 +262,19 @@ void QtGuiApplication::cargarNivel()
         canon->setPos(-20,530);
         scene->addItem(canon);
 
-        Cuadrados* a = new Cuadrados(250, 230,70,0);
+        Cuadrados* a = new Cuadrados(250, 230,70,1);
         Cuadros.append(a);
         scene->addItem(a);
-        Cuadrados* b = new Cuadrados(775, 120, 70,0);
+        Cuadrados* b = new Cuadrados(775, 120, 70,2);
         Cuadros.append(b);
         scene->addItem(b);
-        Cuadrados* c = new Cuadrados(750, 450, 70, 0);
+        Cuadrados* c = new Cuadrados(750, 450, 70, 3);
         Cuadros.append(c);
         scene->addItem(c);
+
+        obsmov= new ObsMovil(500,300);
+        scene->addItem(obsmov);
+        timer1->start(50);
 
 }
 
@@ -269,13 +286,13 @@ void QtGuiApplication::cargarNivel()
 
         tiros = 6;
 
-        Cuadrados* a = new Cuadrados(700, 100, 70,0);
+        Cuadrados* a = new Cuadrados(700, 100, 70,1);
         Cuadros.append(a);
 		scene->addItem(a);
-        Cuadrados* b = new Cuadrados(450, 270, 70,0);
+        Cuadrados* b = new Cuadrados(450, 270, 70,1);
         Cuadros.append(b);
         scene->addItem(b);
-        Cuadrados* c = new Cuadrados(700, 380, 70,0);
+        Cuadrados* c = new Cuadrados(700, 380, 70,3);
         Cuadros.append(c);
         scene->addItem(c);
 
@@ -297,14 +314,14 @@ void QtGuiApplication::cargarNivel()
 	}
     else if (nivel == 1) {
         QPixmap pix(":/images/fondo3.jpg");
-		scene->addPixmap(pix);
+        scene->addPixmap(pix);
 
         tiros = 5;
 
-        Cuadrados* a = new Cuadrados(800, 530, 70,0);
+        Cuadrados* a = new Cuadrados(850, 530, 70,1);
         Cuadros.append(a);
 		scene->addItem(a);
-        Cuadrados* b = new Cuadrados(530, 530, 70,0);
+        Cuadrados* b = new Cuadrados(530, 530, 70,2);
         Cuadros.append(b);
 		scene->addItem(b);
 
@@ -327,13 +344,13 @@ void QtGuiApplication::cargarNivel()
             scene->addPixmap(pix);
             tiros = 5;
 
-            Cuadrados* a = new Cuadrados(450, 50, 70,0);
+            Cuadrados* a = new Cuadrados(450, 50, 70,2);
             Cuadros.append(a);
             scene->addItem(a);
-            Cuadrados* b = new Cuadrados(450, 450, 70,0);
+            Cuadrados* b = new Cuadrados(450, 450, 70,2);
             Cuadros.append(b);
             scene->addItem(b);
-            Cuadrados* c = new Cuadrados(700, 170, 70,0);
+            Cuadrados* c = new Cuadrados(700, 170, 70,3);
             Cuadros.append(c);
             scene->addItem(c);
 

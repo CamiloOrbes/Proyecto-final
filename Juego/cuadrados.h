@@ -18,6 +18,7 @@ public:
     int get_tam();
     int get_x();
     int get_y();
+    int get_color();
     void cambio_color(int color);
     //int get_color;
 

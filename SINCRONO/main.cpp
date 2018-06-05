@@ -48,6 +48,9 @@ int main(){
 
         velocidad = atof(&message[0]);
         cout<<velocidad<<"m/s"<<endl;
+        if (velocidad!=0){
+            cout<<"Funciono"<<endl;
+        }
 
         serial.close();
     }else{
