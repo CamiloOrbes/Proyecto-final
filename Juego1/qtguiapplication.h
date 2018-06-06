@@ -19,6 +19,12 @@
 #include<istream>
 #include"QString"
 
+#include <QTextStream>
+#include <QFile>
+#include <QtSerialPort/QSerialPort>
+#include <QtSerialPort/QSerialPortInfo>
+#include <stdlib.h>
+
 #include "menu.h"
 #include "dialogo.h"
 #include "apuntador.h"
@@ -40,7 +46,7 @@ class QtGuiApplication : public QMainWindow //heredar
 
 public:
     QtGuiApplication(QWidget *parent = Q_NULLPTR);
-
+    float Arduino();
     int getNumJug() const;
     void setNumJug(int value);
 

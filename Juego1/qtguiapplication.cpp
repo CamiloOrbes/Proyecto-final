@@ -18,7 +18,7 @@ QtGuiApplication::QtGuiApplication(QWidget *parent): QMainWindow(parent)
 	ui.setupUi(this);
 	scene = new QGraphicsScene(this);	
     scene->setSceneRect(0, 0, 900, 600);
-    //setBackgroundBrush(QBrush(QImage(":/images/fondo5.png")));
+    //scene->setBackgroundBrush(QBrush(QImage(":/images/caratula.png")));
     flag = scene->items();//lista con los items a mostrar
 
 	ui.graphicsView->setScene(scene);
@@ -53,6 +53,60 @@ QtGuiApplication::QtGuiApplication(QWidget *parent): QMainWindow(parent)
     cargarNivel();
     numJug = nj.getX();
 
+
+}
+float QtGuiApplication::Arduino()
+{
+    float velocidad,Vx,Vy;
+    QSerialPort serial;
+    serial.setPortName("COM5"); //Poner el nombre del puerto, probablemente no sea COM3
+
+    if(serial.open(QIODevice::ReadWrite)){
+        //Ahora el puerto seria está abierto
+        if(!serial.setBaudRate(QSerialPort::Baud9600)) //Configurar la tasa de baudios
+            qDebug()<<serial.errorString();
+
+        if(!serial.setDataBits(QSerialPort::Data8))
+            qDebug()<<serial.errorString();
+
+        if(!serial.setParity(QSerialPort::NoParity))
+            qDebug()<<serial.errorString();
+
+        if(!serial.setStopBits(QSerialPort::OneStop))
+            qDebug()<<serial.errorString();
+
+        if(!serial.setFlowControl(QSerialPort::NoFlowControl))
+            qDebug()<<serial.errorString();
+
+        //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        //Sincrona
+
+        serial.waitForReadyRead(1000);
+        serial.write("k\n");  //Enviar un caracter a Arduino para saber que debe iniciar la transmisión
+        char message[1024];   //Número máximo de caracteres
+        int l = 0;
+        if(serial.waitForReadyRead(10000)){
+            //Data was returned
+            l = serial.readLine(message,100); //Leer toda la línea que envía arduino
+            qDebug()<<"Response: "<<message;
+        }else{
+            //No data
+            qDebug()<<"Time out";
+        }
+
+
+        velocidad = atof(&message[0]);
+        cout<<velocidad<<"m/s"<<endl;
+        if (velocidad!=0){
+            cout<<"Funciono"<<endl;
+        }
+
+        serial.close();
+    }else{
+        qDebug()<<"Serial COM5 not opened. Error: "<<serial.errorString();
+    }
+
+    return velocidad;
 
 }
 
@@ -182,6 +236,8 @@ void QtGuiApplication::bordercollision(BolasGraf *cf)//son los choques con los b
 
 			nivel++;
             vidas++;
+            delete obsmov;
+            timer1->stop();
 			cargarNivel();
 		}
     }
@@ -448,8 +504,14 @@ void QtGuiApplication::on_actionExit_triggered()//cuando se pulsa el boton
 void QtGuiApplication::mousePressEvent(QMouseEvent * ev)
 {
     //creacion de cada pelota.
+    float Vloci,VX,VY;
+    Vloci =Arduino();
+    float ang = atan2(600-ev->y(),ev->x());
+    VX = Vloci*cos(ang);
+    VY = Vloci*sin(ang);
+
     if(!(tiros==0)){
-    bars.push_back(new BolasGraf(ev->x()*0.2,(600-ev->y())*0.2,colorset));
+    bars.push_back(new BolasGraf(VX,VY,colorset));
     scene->addItem(bars.back());
     bars.back()->setPos(0,600);
     if (tiros == 0) { return; }

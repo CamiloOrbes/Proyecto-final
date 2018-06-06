@@ -7,14 +7,29 @@
     <x>0</x>
     <y>0</y>
     <width>907</width>
-    <height>593</height>
+    <height>585</height>
    </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>907</width>
+    <height>585</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>907</width>
+    <height>585</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
+  <property name="whatsThis">
+   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;img src=&quot;:/images/caratua.png&quot;/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+  </property>
   <property name="styleSheet">
-   <string notr="true">background-image:url(:/images/Menu.jpg)</string>
+   <string notr="true">image: url(:/images/caratua.png);</string>
   </property>
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
@@ -65,22 +80,6 @@ color: rgb(255, 255, 255);</string>
    </property>
    <property name="styleSheet">
     <string notr="true">background-image:url(:/images/Salir20.png)</string>
-   </property>
-   <property name="text">
-    <string/>
-   </property>
-  </widget>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>50</y>
-     <width>851</width>
-     <height>151</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-image: url(:/images/colorworld.png)</string>
    </property>
    <property name="text">
     <string/>

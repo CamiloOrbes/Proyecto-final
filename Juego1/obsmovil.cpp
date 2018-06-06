@@ -9,7 +9,7 @@ ObsMovil::ObsMovil(int _x, int _y)
 
 QRectF ObsMovil::boundingRect() const
 {
-    return QRectF(x,y,25,50);
+    return QRectF(x,y,50,150);
 }
 
 void ObsMovil::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
