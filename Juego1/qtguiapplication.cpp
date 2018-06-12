@@ -19,6 +19,7 @@ QtGuiApplication::QtGuiApplication(QWidget *parent): QMainWindow(parent)
 	scene = new QGraphicsScene(this);	
     scene->setSceneRect(0, 0, 900, 600);
     //scene->setBackgroundBrush(QBrush(QImage(":/images/caratula.png")));
+
     flag = scene->items();//lista con los items a mostrar
 
 	ui.graphicsView->setScene(scene);
@@ -55,7 +56,7 @@ QtGuiApplication::QtGuiApplication(QWidget *parent): QMainWindow(parent)
 
 
 }
-float QtGuiApplication::Arduino()
+float QtGuiApplication::Arduino()                       //Se establece la conexion con el arduino
 {
     float velocidad,Vx,Vy;
     QSerialPort serial;
@@ -95,7 +96,7 @@ float QtGuiApplication::Arduino()
         }
 
 
-        velocidad = atof(&message[0]);
+        velocidad = atof(&message[0]);                 //Se tranforma el valor mandado por el arduino a un valor float
         cout<<velocidad<<"m/s"<<endl;
         if (velocidad!=0){
             cout<<"Funciono"<<endl;
@@ -193,7 +194,7 @@ void QtGuiApplication::bordercollision(BolasGraf *cf)//son los choques con los b
 		}
 
     }*/
-    for (int i=0;i<obs.size();i++){
+    for (int i=0;i<obs.size();i++){ //evalua los choques con los bordes de los diferentes obstaculos
         if(cf->collidesWithItem(obs[i])){
             flag = scene->items();
 
@@ -287,12 +288,13 @@ void QtGuiApplication::on_actionCargar_Partida()
       cargarNivel();
 }
 
-void QtGuiApplication::rotar()
+void QtGuiApplication::rotar()  //slot al que se conecta el timer para hacer un obstaculo girar
 {
     obsmov->rotar(1);
+    //obsmov->x()
 }
 
-void QtGuiApplication::cargarNivel()
+void QtGuiApplication::cargarNivel()    //con esta funcion se carga el nivel segun se va avanzando
 {
     Cuadros.clear();
 	bars.clear();
@@ -463,7 +465,7 @@ void QtGuiApplication::keyPressEvent(QKeyEvent *event)
 {
     switch (event->key())
     {
-    case Qt::Key_R:
+    case Qt::Key_R:         //teclas de acceso rapido para reiniciar y salir del programa R y Escape
 {
         nivel = 0;
         vidas = 3;
@@ -475,7 +477,7 @@ void QtGuiApplication::keyPressEvent(QKeyEvent *event)
         exit(0);
         break;
 
-    case Qt::Key_W:
+    case Qt::Key_W:             //con Q, W y E se cambian los colores de las bolas
         colorset=2;
         //mira1->setY(-5);
         //mira1->border(0,0,450,295);
@@ -501,7 +503,7 @@ void QtGuiApplication::on_actionExit_triggered()//cuando se pulsa el boton
     menuP.exec();
 }
 
-void QtGuiApplication::mousePressEvent(QMouseEvent * ev)
+void QtGuiApplication::mousePressEvent(QMouseEvent * ev) //se activa el disparo cuando se hace click con el mouse
 {
     //creacion de cada pelota.
     float Vloci,VX,VY;

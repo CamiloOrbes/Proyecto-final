@@ -6,6 +6,12 @@ Menu::Menu(QWidget *parent) :
     ui(new Ui::Menu)
 {
     ui->setupUi(this);
+    scene1= new QGraphicsScene(this);
+    /*ui->
+
+    scene1->setBackgroundBrush(QBrush(QImage(":/images/caratua.png")));
+    ui->graphicsView.setScene(scene1);
+*/
 }
 
 Menu::~Menu()

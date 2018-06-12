@@ -1,8 +1,8 @@
 #ifndef MENU_H
 #define MENU_H
-
-#include <QDialog>
-#include <QMessageBox>
+#include <QMainWindow>
+#include <QGraphicsScene>
+#include <QGraphicsView>
 #include "dialogo.h"
 #include "avatar.h"
 #include "instrucciones.h"
@@ -32,6 +32,7 @@ private slots:
 
 
 private:
+    QGraphicsScene *scene1;
     Ui::Menu *ui;
     Dialogo *login;
     Instrucciones *ins;

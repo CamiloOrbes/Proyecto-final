@@ -15,7 +15,7 @@ QRectF ObsMovil::boundingRect() const
 void ObsMovil::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     QPixmap pixmap;
-    pixmap.load(":/images/Madera.png");
+    pixmap.load(":/images/obsta.jpg");
     painter->drawPixmap(this->boundingRect(),pixmap,pixmap.rect());
 }
 
