@@ -221,7 +221,7 @@ void QtGuiApplication::bordercollision(BolasGraf *cf)//son los choques con los b
 
         }
     }
-    if (QDateTime::currentDateTime().toMSecsSinceEpoch() - disparo.toMSecsSinceEpoch() > 5000) {//tiempo que hay desde el disparo hasta esete justo momento
+    if (QDateTime::currentDateTime().toMSecsSinceEpoch() - disparo.toMSecsSinceEpoch() > 5000) {//tiempo que hay desde el disparo hasta este justo momento
         if (perdio && vidas > 0) {
 			cargarNivel();
 		}
@@ -230,7 +230,7 @@ void QtGuiApplication::bordercollision(BolasGraf *cf)//son los choques con los b
             QImage image(":/images/arbitro2.png");//se muestra el arbitro con una sancion
 			item = new QGraphicsPixmapItem(QPixmap::fromImage(image));
 			scene->addItem(item);
-            disparo = QDateTime::currentDateTime();//Asigna el momento justo en que se efectuo el disparo, cuurentdatetime, hora actual
+            disparo = QDateTime::currentDateTime();//Asigna el momento justo en que se efectuo el disparo, currentdatetime, hora actual
 			perdio = true;
 		}
         if (enemigos <= 0) { //Condicion para avanzar de nivel
@@ -507,7 +507,7 @@ void QtGuiApplication::mousePressEvent(QMouseEvent * ev) //se activa el disparo 
 {
     //creacion de cada pelota.
     float Vloci,VX,VY;
-    Vloci =Arduino();
+    Vloci =Arduino();                                           //se llama la funcion arduino antes del disparo
     float ang = atan2(600-ev->y(),ev->x());
     VX = Vloci*cos(ang);
     VY = Vloci*sin(ang);

@@ -75,7 +75,7 @@ private:
     //QList internamente representa un array
     QList <Cuadrados*> Cuadros;//lista con objetos de la clase cudrados para añadir a la escena.
     QList <Obstaculo*> obs;//lista con objetos de la clase bloques para mostrarlos en escena
-    QList <BolasGraf*> bars;   //lista con objetos de la clase cuerpograf con los cuerpos para mostrarlos.
+    QList <BolasGraf*> bars;   //lista con objetos de la clase bolasgraf con los cuerpos para mostrarlos.
     QList<QGraphicsItem*> flag;
     QTimer *timer, *timer1;              //timer para los intervalos de tiempo entre cada frame
     Menu *menuP;
